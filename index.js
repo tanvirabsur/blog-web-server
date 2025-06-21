@@ -1,11 +1,13 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 const port = 8080;
 app.use(express.json());
 
 app.get('/', (req,res)=>{
-    res.send('Hello World!');
+    console.log('Received a GET request');
+    res.sendFile(path.join(__dirname, 'Views', 'index.html'));
 })
 
 app.listen(port, ()=>{
