@@ -1,15 +1,12 @@
 const express = require('express');
-const path = require('path');
-
+const { run } = require('./db');
+const router = require('./route');
 const app = express();
 const port = 8080;
 app.use(express.json());
+run();
 
-app.get('/', (req,res)=>{
-    console.log('Received a GET request');
-    
-    res.sendFile(path.join(__dirname, 'Views', 'index.html'));
-})
+app.use('/', router)
 
 app.listen(port, ()=>{
     console.log(`Server is running on http://localhost:${port}`);
